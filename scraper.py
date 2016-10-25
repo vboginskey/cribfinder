@@ -2,7 +2,7 @@ from craigslist import CraigslistHousing
 import settings
 
 class Scraper:
-    def results():
+    def results(self):
         cl_h = CraigslistHousing(
                     site=settings.CRAIGSLIST_SITE,
                     category=settings.CRAIGSLIST_CATEGORY,
@@ -10,8 +10,10 @@ class Scraper:
                         'min_ft2': settings.MIN_FT2,
                         'min_price': settings.MIN_PRICE,
                         'max_price': settings.MAX_PRICE,
-                        'posted_today': True
+                        'posted_today': True,
+                        'search_distance': 3.5,
+                        'zip_code': '07307'
                     }
             )
 
-        cl_h.get_results(sort_by='newest', geotagged=True, limit=5) #XXX
+        return cl_h.get_results(sort_by='newest', geotagged=True, limit=5)
