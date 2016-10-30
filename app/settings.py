@@ -1,10 +1,12 @@
+import os
+
 CRAIGSLIST_SITE = 'newjersey'
 CRAIGSLIST_CATEGORY = 'apa'
 
 MIN_FT2 = 900
 
-MIN_PRICE = 2000
-MAX_PRICE = 3200
+MIN_PRICE = 1500
+MAX_PRICE = 3000
 
 MAX_TRANSIT_DISTANCE = 0.75
 
@@ -35,3 +37,6 @@ STATIONS = {
     "Journal Square PATH": [40.733014, -74.062882],
     "Hoboken PATH": [40.734937, -74.027545]
 }
+
+SLACK_TOKEN = os.getenv('SLACK_TOKEN', '')
+SLACK_CHANNEL = '#cribs'

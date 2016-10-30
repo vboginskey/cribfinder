@@ -14,6 +14,7 @@ class Listing(Base):
 
     id = Column(Integer, primary_key=True)
     cl_id = Column(Integer, unique=True)
+    link = Column(String)
     posted = Column(DateTime)
     name = Column(String)
     location = Column(String)
@@ -31,6 +32,7 @@ class Listing(Base):
 
     def process(self):
         self.cl_id = self.scraped_listing['id']
+        self.link = self.scraped_listing['url']
         self.posted = parse(self.scraped_listing['datetime'])
         self.name = self.scraped_listing['name']
         self.location = self.scraped_listing['where']
@@ -91,20 +93,21 @@ class Listing(Base):
         return self
 
     def assign_area(self):
-        if self.lat is not None:
-            for area, coords in settings.BOXES.items():
-                if in_box(self.lat, self.lon, coords):
-                    self.area = area
-                    break
-        else:
+        if self.location is not None:
             for hood in settings.NEIGHBORHOODS:
                 if hood in self.location.lower():
                     self.area = hood.title()
                     break
 
+        if self.area is None and self.lat is not None:
+            for area, coords in settings.BOXES.items():
+                if in_box(self.lat, self.lon, coords):
+                    self.area = area
+                    break
+
         return self
 
-engine = create_engine('sqlite:///listings.db')
+engine = create_engine('sqlite:////data/listings.db')
 Base.metadata.create_all(engine)
 
 Session = sessionmaker(bind=engine)
