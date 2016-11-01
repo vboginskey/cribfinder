@@ -89,5 +89,4 @@ ENV/
 .ropeproject
 
 ###
-
-app/listings.db
+listings.db

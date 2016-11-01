@@ -15,4 +15,4 @@ class Scraper:
                     }
             )
 
-        return cl_h.get_results(sort_by='newest', geotagged=True, limit=25)
+        return cl_h.get_results(sort_by='newest', geotagged=True, limit=50)
