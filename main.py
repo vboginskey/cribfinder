@@ -2,6 +2,7 @@ from listing import Listing, session
 from scraper import Scraper
 from slack import Slack
 
+from random import randint
 import sys
 import traceback
 import time
@@ -50,4 +51,4 @@ if __name__ == '__main__':
             print("Error:", sys.exc_info()[0])
             traceback.print_exc()
 
-        time.sleep(3600)
+        time.sleep(14400 + randint(-600, 600))
