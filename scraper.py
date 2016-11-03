@@ -1,4 +1,5 @@
 from craigslist import CraigslistHousing
+from random import randint
 import settings
 
 class Scraper:
@@ -7,11 +8,9 @@ class Scraper:
                     site=settings.CRAIGSLIST_SITE,
                     category=settings.CRAIGSLIST_CATEGORY,
                     filters={
-                        'min_ft2': settings.MIN_FT2,
-                        'min_price': settings.MIN_PRICE,
-                        'max_price': settings.MAX_PRICE,
-                        'search_distance': 3.5,
-                        'zip_code': '07307'
+                        'min_ft2': settings.MIN_FT2 + randint(-5, 5) * 10,
+                        'min_price': settings.MIN_PRICE + randint(-10, 10) * 10,
+                        'max_price': settings.MAX_PRICE + randint(-10, 10) * 10
                     }
             )
 
